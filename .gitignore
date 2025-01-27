@@ -50,3 +50,5 @@ public/_next-video
 #node_modules
 node_modules/
 .env.local
+
+.env*.local
