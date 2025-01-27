@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Typical from 'react-typical'
 import { Compass, ListTodo, Trophy, Palette, Navigation, Target } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
@@ -61,16 +60,7 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-12"
       >
-         <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
-        <Typical
-          steps={[
-            "Hack Your Habits, Master Your Life", 
-            3000, 
-          ]}
-          speed={50}
-          wrapper="span" 
-        />
-      </h1>
+         <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white"> "Hack Your Habits, Master Your Life", </h1>
         <p className="text-xl text-white/80">
           Transform your daily routines into lasting habits with Habitrix
         </p>
