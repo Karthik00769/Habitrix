@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useHabits } from '@/contexts/HabitContext'
 
 export function MidnightReset() {
-  const { resetCompletedStatus } = useHabits()
+  const {resetCompletedStatus } = useHabits()
 
   useEffect(() => {
     const checkMidnight = () => {
@@ -14,11 +14,12 @@ export function MidnightReset() {
       }
     }
 
-    const interval = setInterval(checkMidnight, 60000) 
+    const interval = setInterval(checkMidnight, 60000)
 
     return () => clearInterval(interval)
   }, [resetCompletedStatus])
 
   return null
 }
+
 

@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import type React from "react"
 import { createContext, useContext, useState, useEffect } from "react"
@@ -21,6 +21,7 @@ interface HabitContextType {
   completeHabit: (id: string) => void
   getTopStreak: () => number
   editHabit: (id: string, newName: string) => void
+  resetCompletedStatus: () => void // Added property
   particleColor: string
   setParticleColor: (color: string) => void
 }
@@ -97,9 +98,28 @@ export const HabitProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     setHabits((prevHabits) => prevHabits.map((habit) => (habit.id === id ? { ...habit, name: newName } : habit)))
   }
 
+  const resetCompletedStatus = () => {
+    setHabits((prevHabits) =>
+      prevHabits.map((habit) => ({
+        ...habit,
+        completedToday: false,
+      })),
+    )
+  }
+
   return (
     <HabitContext.Provider
-      value={{ habits, addHabit, deleteHabit, completeHabit, getTopStreak, editHabit, particleColor, setParticleColor }}
+      value={{
+        habits,
+        addHabit,
+        deleteHabit,
+        completeHabit,
+        getTopStreak,
+        editHabit,
+        resetCompletedStatus, 
+        particleColor,
+        setParticleColor,
+      }}
     >
       {children}
     </HabitContext.Provider>
