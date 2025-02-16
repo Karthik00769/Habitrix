@@ -64,7 +64,7 @@ export default function Navigation() {
 
       {isMobile && isOpen && <div className="fixed inset-0 bg-black/50 z-40" onClick={() => setIsOpen(false)} />}
       <div
-        className={`fixed top-0 left-0 h-full bg-gray-900 text-white w-64 p-5 z-50 transform ${
+        className={`fixed top-0 left-0 h-full w-64 p-5 z-50 transform bg-gray-800 text-white shadow-lg ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300`}
       >
@@ -99,6 +99,5 @@ export default function Navigation() {
     </nav>
   )
 }
-
 
 
