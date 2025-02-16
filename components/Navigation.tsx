@@ -41,7 +41,7 @@ export default function Navigation() {
               <Link
                 key={href}
                 href={href}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-colors text-white
+                className={`flex items-center space-x-2 px-3 py-2 rounded-md  text-white
                   ${pathname === href ? "bg-white/20" : "hover:bg-white/10"}`}
               >
                 <Icon className="h-5 w-5" />
@@ -52,7 +52,7 @@ export default function Navigation() {
               <UserButton afterSignOutUrl="/" />
             ) : (
               <SignInButton mode="modal">
-                <button className="flex items-center space-x-2 px-3 py-2 rounded-md transition-colors text-white hover:bg-white/10">
+                <button className="flex items-center space-x-2 px-3 py-2 rounded-md  text-white hover:bg-white/10">
                   <UserCircle2 className="h-5 w-5" />
                   <span>Sign In</span>
                 </button>
@@ -88,7 +88,7 @@ export default function Navigation() {
             <UserButton afterSignOutUrl="/" />
           ) : (
             <SignInButton mode="modal">
-              <button className="w-full flex items-center justify-center space-x-2 px-3 py-2 rounded-md transition-colors bg-white/10 hover:bg-white/20">
+              <button className="w-full flex items-center justify-center space-x-2 px-3 py-2 rounded-md  bg-white/10 hover:bg-white/20">
                 <UserCircle2 className="h-5 w-5" />
                 <span>Sign In</span>
               </button>
