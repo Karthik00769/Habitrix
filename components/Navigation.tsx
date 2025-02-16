@@ -25,13 +25,10 @@ export default function Navigation() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/20 backdrop-blur-md border-b border-white/10">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 text-2xl font-bold text-white">
             <Compass className="h-8 w-8" />
             <span>Habitrix</span>
           </Link>
-
-          {/* Mobile Menu Button */}
           {isMobile && (
             <button
               className="text-white p-2 rounded-md"
@@ -40,8 +37,6 @@ export default function Navigation() {
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           )}
-
-          {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-4">
             {links.map(({ href, icon: Icon, label }) => (
               <Link
@@ -67,8 +62,6 @@ export default function Navigation() {
           </div>
         </div>
       </div>
-
-      {/* Mobile Sidebar */}
       {isMobile && isOpen && (
         <div className="fixed inset-0 bg-black/50 z-40" onClick={() => setIsOpen(false)} />
       )}
