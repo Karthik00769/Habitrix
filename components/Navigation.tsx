@@ -41,7 +41,7 @@ export default function Navigation() {
               <Link
                 key={href}
                 href={href}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-md  text-white
+                className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-colors text-white
                   ${pathname === href ? "bg-white/20" : "hover:bg-white/10"}`}
               >
                 <Icon className="h-5 w-5" />
@@ -52,7 +52,7 @@ export default function Navigation() {
               <UserButton afterSignOutUrl="/" />
             ) : (
               <SignInButton mode="modal">
-                <button className="flex items-center space-x-2 px-3 py-2 rounded-md  text-white hover:bg-white/10">
+                <button className="flex items-center space-x-2 px-3 py-2 rounded-md transition-colors text-white hover:bg-white/10">
                   <UserCircle2 className="h-5 w-5" />
                   <span>Sign In</span>
                 </button>
@@ -63,39 +63,37 @@ export default function Navigation() {
       </div>
 
       {isMobile && isOpen && <div className="fixed inset-0 bg-black/50 z-40" onClick={() => setIsOpen(false)} />}
-      <div
-        className={`fixed top-0 left-0 h-full w-64 p-5 z-50 transform bg-gray-800 text-white shadow-lg ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300`}
-      >
-        <h2 className="text-xl font-bold mb-4">Habitrix</h2>
-        <ul className="space-y-4">
-          {links.map(({ href, icon: Icon, label }) => (
-            <li key={href}>
-              <Link
-                href={href}
-                className="flex items-center space-x-2 p-2 rounded hover:bg-gray-700"
-                onClick={() => setIsOpen(false)}
-              >
-                <Icon className="h-5 w-5" />
-                <span>{label}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <div className="mt-6">
-          {isSignedIn ? (
-            <UserButton afterSignOutUrl="/" />
-          ) : (
-            <SignInButton mode="modal">
-              <button className="w-full flex items-center justify-center space-x-2 px-3 py-2 rounded-md  bg-white/10 hover:bg-white/20">
-                <UserCircle2 className="h-5 w-5" />
-                <span>Sign In</span>
-              </button>
-            </SignInButton>
-          )}
+      {isOpen && (
+        <div className="fixed top-0 left-0 h-full w-64 p-5 z-50 bg-gray-800 text-white shadow-lg">
+          <h2 className="text-xl font-bold mb-4">Habitrix</h2>
+          <ul className="space-y-2">
+            {links.map(({ href, icon: Icon, label }) => (
+              <li key={href}>
+                <Link
+                  href={href}
+                  className="flex items-center space-x-2 p-3 rounded bg-gray-700"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <Icon className="h-5 w-5" />
+                  <span>{label}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-6">
+            {isSignedIn ? (
+              <UserButton afterSignOutUrl="/" />
+            ) : (
+              <SignInButton mode="modal">
+                <button className="w-full flex items-center justify-center space-x-2 px-3 py-2 rounded-md bg-gray-700">
+                  <UserCircle2 className="h-5 w-5" />
+                  <span>Sign In</span>
+                </button>
+              </SignInButton>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </nav>
   )
 }
