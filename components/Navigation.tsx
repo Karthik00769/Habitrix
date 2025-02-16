@@ -29,14 +29,13 @@ export default function Navigation() {
             <Compass className="h-8 w-8" />
             <span>Habitrix</span>
           </Link>
+
           {isMobile && (
-            <button
-              className="text-white p-2 rounded-md"
-              onClick={() => setIsOpen(!isOpen)}
-            >
+            <button className="text-white p-2 rounded-md" onClick={() => setIsOpen(!isOpen)}>
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           )}
+
           <div className="hidden md:flex space-x-4">
             {links.map(({ href, icon: Icon, label }) => (
               <Link
@@ -62,9 +61,8 @@ export default function Navigation() {
           </div>
         </div>
       </div>
-      {isMobile && isOpen && (
-        <div className="fixed inset-0 bg-black/50 z-40" onClick={() => setIsOpen(false)} />
-      )}
+
+      {isMobile && isOpen && <div className="fixed inset-0 bg-black/50 z-40" onClick={() => setIsOpen(false)} />}
       <div
         className={`fixed top-0 left-0 h-full bg-gray-900 text-white w-64 p-5 z-50 transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
@@ -85,9 +83,22 @@ export default function Navigation() {
             </li>
           ))}
         </ul>
+        <div className="mt-6">
+          {isSignedIn ? (
+            <UserButton afterSignOutUrl="/" />
+          ) : (
+            <SignInButton mode="modal">
+              <button className="w-full flex items-center justify-center space-x-2 px-3 py-2 rounded-md transition-colors bg-white/10 hover:bg-white/20">
+                <UserCircle2 className="h-5 w-5" />
+                <span>Sign In</span>
+              </button>
+            </SignInButton>
+          )}
+        </div>
       </div>
     </nav>
   )
 }
+
 
 
