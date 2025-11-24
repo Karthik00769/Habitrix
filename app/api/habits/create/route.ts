@@ -21,7 +21,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth, currentUser } from '@clerk/nextjs/server';
 import { getDatabase } from '@/lib/mongodb';
 import { checkHabitDiversityAchievements } from '@/lib/achievements';
-import { sendAchievementUnlocked, sendTokenUpdate } from '@/lib/sse';
+import { broadcast } from '@/lib/sse';
 
 export async function POST(request: NextRequest) {
   try {
@@ -94,9 +94,6 @@ export async function POST(request: NextRequest) {
 
         // Award tokens
         tokensAwarded += achievement.tokenReward;
-
-        // Send SSE event
-        sendAchievementUnlocked(userId, achievement.name);
       }
     }
 
@@ -112,7 +109,11 @@ export async function POST(request: NextRequest) {
         { upsert: true, returnDocument: 'after' }
       );
 
-      sendTokenUpdate(userId, tokenDoc?.balance || tokensAwarded);
+      // Broadcast token update via SSE
+      broadcast(userId, {
+        type: 'token_update',
+        newBalance: tokenDoc?.balance || tokensAwarded,
+      });
     }
 
     // Update user stats
