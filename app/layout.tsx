@@ -4,6 +4,7 @@ import Navigation from "@/components/Navigation"
 import ParticleBackground from "@/components/ParticleBackground"
 import { HabitProvider } from "@/contexts/HabitContext"
 import { ClerkProvider } from "@clerk/nextjs"
+import { Toaster } from "sonner"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -11,6 +12,9 @@ export const metadata = {
   title: "Habitrix - Hack Your Habits, Master Your Life",
   description: "A modern habit tracking application to help you build better habits",
 }
+
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export default function RootLayout({
   children,
@@ -25,6 +29,7 @@ export default function RootLayout({
             <ParticleBackground />
             <Navigation />
             <div className="pt-16">{children}</div>
+            <Toaster position="top-right" theme="dark" richColors />
           </HabitProvider>
         </body>
       </ClerkProvider>

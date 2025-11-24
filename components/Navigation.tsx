@@ -25,7 +25,7 @@ export default function Navigation() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/20 backdrop-blur-md border-b border-white/10">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center space-x-2 text-2xl font-bold text-white">
+          <Link href="/" className="flex items-center space-x-2 text-2xl font-bold text-white" prefetch={true}>
             <Compass className="h-8 w-8" />
             <span>Habitrix</span>
           </Link>
@@ -41,6 +41,7 @@ export default function Navigation() {
               <Link
                 key={href}
                 href={href}
+                prefetch={true}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-colors text-white
                   ${pathname === href ? "bg-white/20" : "hover:bg-white/10"}`}
               >
@@ -71,6 +72,7 @@ export default function Navigation() {
               <li key={href}>
                 <Link
                   href={href}
+                  prefetch={true}
                   className="flex items-center space-x-2 p-3 rounded bg-gray-700"
                   onClick={() => setIsOpen(false)}
                 >

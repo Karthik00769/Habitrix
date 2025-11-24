@@ -12,7 +12,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { useUser } from "@clerk/nextjs"
 
 export default function Habits() {
-  const { habits, addHabit, deleteHabit, editHabit, completeHabit } = useHabits()
+  const { habits, tokens, addHabit, deleteHabit, editHabit, completeHabit } = useHabits()
   const [newHabit, setNewHabit] = useState("")
   const [category, setCategory] = useState("")
   const [editingHabit, setEditingHabit] = useState<{ id: string; name: string } | null>(null)
@@ -35,7 +35,18 @@ export default function Habits() {
   return (
     <div className="container mx-auto px-4 py-12">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
-        <h1 className="text-3xl font-bold text-white">Daily Habits</h1>
+        <div className="flex justify-between items-center">
+          <h1 className="text-3xl font-bold text-white">Daily Habits</h1>
+          {user && (
+            <div className="flex items-center gap-2 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/50 px-4 py-2 rounded-lg">
+              <span className="text-2xl">🪙</span>
+              <div className="flex flex-col">
+                <span className="text-white font-bold text-lg">{tokens}</span>
+                <span className="text-white/60 text-xs">Tokens</span>
+              </div>
+            </div>
+          )}
+        </div>
 
         <Card className="bg-white/10 border-white/20">
           <CardContent className="pt-6">
@@ -148,4 +159,3 @@ export default function Habits() {
     </div>
   )
 }
-
